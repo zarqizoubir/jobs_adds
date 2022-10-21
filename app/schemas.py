@@ -29,9 +29,6 @@ class show_User(BaseModel):
     class Config:
         orm_mode = True
 
-class show_jobs_users(BaseModel):
-    username:str
-    email:str
 
 class show_jobs(BaseModel):
     title:str
@@ -39,7 +36,7 @@ class show_jobs(BaseModel):
     place:str
     salary:float
     skills:str
-    poster: show_jobs_users
+    poster: show_User
 
     class Config:
         orm_mode = True
