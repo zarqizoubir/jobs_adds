@@ -1,18 +1,23 @@
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,status
 from .. import schemas,models
 from sqlalchemy.orm import Session
 from ..database import get_db
 
-router = APIRouter()
 
 
-@router.get("/jobs",response_model=list[schemas.show_jobs],tags=["Jobs"])
+router = APIRouter(
+    prefix="/jobs",
+    tags=["Jobs"]
+)
+
+
+@router.get("/",response_model=list[schemas.show_jobs])
 def get_all_jobs(db:Session=Depends(get_db)):
     jobs = db.query(models.Job).all()
     return jobs
 
 
-@router.get("/jobs/{id}",response_model=schemas.show_jobs,tags=["Jobs"])
+@router.get("/{id}",response_model=schemas.show_jobs)
 def get_all_jobs(id:int,db:Session=Depends(get_db)):
     job = db.query(models.Job).get(id)
     return job
@@ -20,8 +25,7 @@ def get_all_jobs(id:int,db:Session=Depends(get_db)):
 
 
 
-
-@router.post("/jobs",tags=["Jobs"])
+@router.post("/")
 def create_job(request:schemas.Job,db:Session=Depends(get_db)):
     new_job = models.Job(title=request.title,
     description=request.description,
@@ -33,3 +37,12 @@ def create_job(request:schemas.Job,db:Session=Depends(get_db)):
     db.commit()
     db.refresh(new_job)
     return request
+
+
+
+@router.delete("/{id}",status_code=status.HTTP_204_NO_CONTENT)
+def delete_job(id :int,db:Session=Depends(get_db)):
+    db.query(models.Job).filter("id"==id).delete(synchronize_session=False)
+
+
+    return 

@@ -28,14 +28,18 @@ class show_User(BaseModel):
 
     class Config:
         orm_mode = True
-    
+
+class show_jobs_users(BaseModel):
+    username:str
+    email:str
+
 class show_jobs(BaseModel):
     title:str
     description:str
     place:str
     salary:float
     skills:str
-    poster: show_User
+    poster: show_jobs_users
 
     class Config:
         orm_mode = True

@@ -4,27 +4,28 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..utils.hashing import Hash
 
-router = APIRouter()
+
+
+router = APIRouter(
+    prefix="/users",
+    tags=["Users"]
+)
 
 
 
-@router.get("/users",response_model=list[schemas.show_User],tags=["Users"])
+@router.get("/",response_model=list[schemas.show_User])
 def show_Users(db:Session=Depends(get_db)):
     users = db.query(models.User).all()
-
-
-    return users    
+    return users
 
 
 
-@router.get("/users/{id}",response_model=schemas.show_User,tags=["Users"])
+@router.get("/{id}",response_model=schemas.show_User)
 def show_Users(id:int,db:Session=Depends(get_db)):
     user = db.query(models.User).get(id)
+    return user  
 
-
-    return user    
-
-@router.post("/users",status_code=202,tags=["Users"])
+@router.post("/",status_code=202)
 def show_Users(request:schemas.User,db:Session=Depends(get_db)):
     new_user = models.User(
         username=request.username,
