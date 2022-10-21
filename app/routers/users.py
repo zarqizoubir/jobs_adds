@@ -1,9 +1,8 @@
 from fastapi import APIRouter,Depends
-from .. import schemas,models
+from .. import schemas
 from sqlalchemy.orm import Session
 from ..database import get_db
-from ..utils.hashing import Hash
-
+from ..CRUD import user_crud
 
 
 router = APIRouter(
@@ -15,28 +14,15 @@ router = APIRouter(
 
 @router.get("/",response_model=list[schemas.show_User])
 def show_Users(db:Session=Depends(get_db)):
-    users = db.query(models.User).all()
-    return users
+    return user_crud.query_all_users(db=db)
 
 
 
 @router.get("/{id}",response_model=schemas.show_User)
-def show_Users(id:int,db:Session=Depends(get_db)):
-    user = db.query(models.User).get(id)
-    return user  
+def show_Users(id:int,db:Session=Depends(get_db)): 
+    return user_crud.query_user_by_id(db=db,id=id)
+
 
 @router.post("/",status_code=202)
 def show_Users(request:schemas.User,db:Session=Depends(get_db)):
-    new_user = models.User(
-        username=request.username,
-        email=request.email,
-        password=Hash.bcrypt(request.password) 
-    )
-
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-
-    return {
-        "message":"created"
-    }
+    return user_crud.create_user(request=request,db=db)
