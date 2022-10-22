@@ -23,3 +23,11 @@ class User(Base):
     password= Column(String)
 
     jobs= relationship("Job",back_populates="poster")
+
+
+
+class Video(Base):
+    __tablename__="videos"
+    id = Column(Integer,primary_key=True,index=True)
+    filename = Column(String)
+    path = Column(String)
