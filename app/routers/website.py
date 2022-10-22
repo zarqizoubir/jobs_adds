@@ -15,7 +15,8 @@ templates = Jinja2Templates("templates")
 @router.get("/videos",response_class=HTMLResponse)
 def me(request:Request,db:Session = Depends(get_db)):
     videos : list[models.Video] = db.query(models.Video).all()
-
+    if videos.__len__()==0:
+        return "<p> nothing To show </p>"
     return templates.TemplateResponse("videos.html",{
         "request":request,
         "length":videos.__len__(),
@@ -25,7 +26,8 @@ def me(request:Request,db:Session = Depends(get_db)):
 @router.get("/videos/{id}",response_class=HTMLResponse)
 def anime_by_id(id:int,request:Request,db:Session = Depends(get_db)):
     video :models.Video = db.query(models.Video).get(id)
-    print(video.path)
+    if not video :
+        return "<p> nothing To show </p>"
     return templates.TemplateResponse("video.html",{
         "request":request,
         "name":video.filename,
