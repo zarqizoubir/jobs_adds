@@ -7,3 +7,4 @@ jinja2
 passlib
 bcrypt
 python-jose[cryptography]
+aiofiles
