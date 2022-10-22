@@ -1,0 +1,32 @@
+<html>
+    <head>
+
+        <link rel="stylesheet" href="{{url_for('static',path='/style.css')}}">
+        <title>{{ title }}</title>
+    </head>
+<body>
+    <center>
+        <h1>
+            The Main Page {{ me }}
+        </h1>
+    </center>
+
+    <div> 
+    <form class='hx' method="POST" enctype="multipart/form-data">
+
+        <!-- <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br> -->
+        <div class="spacing"></div>
+        <input type="file" name="file"><br>
+        <input type="submit" Value='Submit Data'>
+
+    </form> 
+    </div>
+
+</body>
+<footer>
+
+</footer>
+</html>
