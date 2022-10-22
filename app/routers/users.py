@@ -24,5 +24,5 @@ def show_Users(id:int,db:Session=Depends(get_db)):
 
 
 @router.post("/",status_code=202)
-def show_Users(request:schemas.User,db:Session=Depends(get_db)):
+def Create_Users(request:schemas.User,db:Session=Depends(get_db)):
     return user_crud.create_user(request=request,db=db)

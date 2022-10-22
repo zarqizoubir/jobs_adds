@@ -1,15 +1,45 @@
 
-
-h1{
-    color: brown;
+h1 {
+    font-size: 50;
+    padding-top: 20px;
     text-align: center;
+    color: wheat;
+}
+
+#sub{
+    margin: 20;
+    padding: 5;
+    font-size: 20;
+}
+
+.header{
+    margin: 0;
+    height: 100;
+    width: auto;
+    background-color: black;
 }
 
 
-.hx{
-    border: 20;
-    text-align: center;
+.video{
+    padding: 40;
+    text-align: center; 
 }
-.spacing{
-    height: 20;
+.form{
+    margin: 100;
+    padding: 40;
+    text-align: center; 
+}
+
+
+#file{
+    color: red;
+}
+
+
+.nextprevious{
+    text-align: center;   
+}
+
+.btn{
+    padding: 30;
 }
