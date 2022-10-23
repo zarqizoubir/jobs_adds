@@ -1,27 +1,22 @@
-{% include "base.html" %}
-
-{% for i in range(videos.__len__())  %}
+{% include "base.html" %} {% for i in range(videos.__len__()) %}
 <head>
-    <title>
-        Videos
-    </title>
+  <title>Videos</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1>
-            {{videos[i].filename}}
-        </h1>
-    </div>
+  <div class="header">
+    <h1>{{videos[i].filename}}</h1>
+  </div>
 
-     
-
-
-   
-    <div class="video" >
-        <p>
-            <video src="{{videos[i].path}}" controls width=1280 height=720 ></video>  
-        </p>  
-    </div> 
-    {% endfor %}
+  <div class="video">
+    <p>
+      <video
+        src="{{videos[i].path}}"
+        controls
+        width="1280"
+        height="720"
+      ></video>
+    </p>
+  </div>
+  {% endfor %}
 </body>

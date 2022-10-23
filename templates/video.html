@@ -1,26 +1,18 @@
 {% include "base.html" %}
 <head>
-    <title>
-        {{name}}
-    </title>
+  <title>{{name}}</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1>
-            Anime Page
-        </h1>
-    </div>
+  <div class="header">
+    <h1>Anime Page</h1>
+  </div>
 
-    <div class="video" >
-        <p>
-            <a class="btn" href="/video/{{id-1}}">
-                Previous
-                </a>
-                <video src="{{path}}" controls width=1280 height=720  autoplay></video>  
-                <a class="btn" href="/video/{{id+1}}">
-                    Next
-                </a> 
-        </p>  
-    </div>
+  <div class="video">
+    <p>
+      <a class="btn" href="/videos/{{id-1}}"> Previous </a>
+      <video src="{{path}}" controls width="1280" height="720" autoplay></video>
+      <a class="btn" href="/videos/{{id+1}}"> Next </a>
+    </p>
+  </div>
 </body>

@@ -13,7 +13,9 @@ h1 {
 }
 
 .header{
+    font-family: monospace;
     margin: 0;
+    margin-bottom: 50;
     height: 100;
     width: auto;
     background-color: black;
