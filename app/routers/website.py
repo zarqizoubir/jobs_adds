@@ -61,10 +61,3 @@ async def upload(request: Request, file: UploadFile = File(...), db: Session = D
     return templates.TemplateResponse("upload.html", {
         "request": request,
     })
-
-
-@router.get("/me")
-def my_Profile(request: Request):
-    return templates.TemplateResponse("me.html", {
-        "request": request
-    })
